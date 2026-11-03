@@ -1,6 +1,8 @@
 # Mapping bimodal colloidal depletion systems onto the monodisperse gelation phase diagram
 This is a simulation and analysis pipeline for creating a phase diagram of bimodal colloidal gels.
 
+Results from this project are [available on arXiV](https://doi.org/10.48550/arXiv.2610.33394) and are currently under review.
+
 Simulations can be run using the [sim-scripts](./sim-scripts) and the DPDMorse extension for HOOMD-blue v4.2.1, available as [hoomd4.2.1-mod](https://github.com/procf/hoomd4.2.1-mod).
 
 To confirm that a system is at equilibrium before gelation, use [analysis-eq](./analysis-scripts/analysis-eq)
