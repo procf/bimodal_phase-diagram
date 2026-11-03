@@ -1,0 +1,72 @@
+#!/bin/bash
+
+script_path='/projects/props/Rob/colloids/gel-scripts/hoomd4.2.1-scripts/config-from-path/2-analysis/analysis-DPD'
+
+particle_size=('1' '2')
+volume_fractions=('05' '10' '15' '20' '25' '30')
+D0=('03' '05' '07' '09' '12')
+kappa=('60')
+depletion_scaling=('bysize')
+L=( '70' )
+
+# Redirect stdout and stderr to a file named with today's date
+# (but use tee so that the output is also displayed on the terminal)
+current_date=$(date +"%Y-%m-%d")
+output_file="ac_joblist_${current_date}.txt"
+exec > >(tee -a "$output_file") 2>&1
+
+curr_dir="$(pwd)"
+pwd
+
+for ((r=0; r<${#particle_size[@]}; r++)); do
+  radius="${particle_size[$r]}"
+
+  for ((l=0; l<${#L[@]}; l++)); do
+    L_val="${L[$l]}"
+    #echo $L_val
+
+    for ((p=0; p<${#volume_fractions[@]}; p++)); do
+      phi_val="${volume_fractions[$p]}"
+
+      for ((s=0; s<${#depletion_scaling[@]}; s++)); do
+        scaling="${depletion_scaling[$s]}"
+
+        for ((d=0; d<${#D0[@]}; d++)); do
+          D0_val="${D0[$d]}"
+
+          for ((a=0; a<${#kappa[@]}; a++)); do
+            kappa_val="${kappa[$a]}"
+
+	    radius_float=$(printf "%.0f" "$(echo "$radius" | bc -l)")
+            if [[ $radius_float -ne 2 ]]; then
+                # r1-0/DPD/L70/mono/seedNone/phi20/potential-morse-bysize/12kT/kappa60/
+                gel_path="/projects/props/Rob/colloids/bimodal/r${radius}-0/DPD/L${L_val}/mono/seedNone/phi${phi_val}/potential-morse-${scaling}/${D0_val}kT/kappa${kappa_val}/"
+            else
+                # r2-0/DPD/L70/phi20/potential-morse-bysize/12kT/kappa60/
+                gel_path="/projects/props/Rob/colloids/bimodal/r${radius}-0/DPD/L${L_val}/phi${phi_val}/potential-morse-${scaling}/${D0_val}kT/kappa${kappa_val}/"
+            fi
+
+            echo $gel_path
+	    #[ -e "$gel_pathanalysis-DPD" ] && echo "$gel_pathanalysis-DPD"
+	    #[ -e "$gel_path" ] && echo "$gel_path"
+
+            #tag="r1r${rArB}_${composition}_phi${phi_tag}"
+            #echo $tag
+
+            #mkdir -p "$gel_path"
+
+            cp ${script_path}/analyze-DPD $gel_path/
+            cp ${script_path}/exec_analysis-DPD.py $gel_path/
+
+            cd $gel_path
+            sbatch analyze-DPD $script_path
+            cd $curr_dir
+
+            echo "---"
+
+	  done
+	done
+      done
+    done
+  done
+done

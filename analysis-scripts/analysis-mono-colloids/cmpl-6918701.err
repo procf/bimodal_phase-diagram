@@ -1,0 +1,83 @@
+/projects/props/Rob/software/hoomd4.2.1-mod/hoomdmod4.2.1-venv/lib/python3.10/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmodmodule.c: In function ‘f2py_setup_pore_size_calculation’:
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmodmodule.c:2541:49: warning: assignment to ‘f2py_init_func’ {aka ‘void (*)(int *, long int *, void (*)(char *, long int *), int *)’} from incompatible pointer type ‘void (*)(int *, int *, void (*)(char *, int *), int *)’ [-Wincompatible-pointer-types]
+ 2541 |   f2py_pore_size_calculation_def[i_f2py++].func = framechoice;
+      |                                                 ^
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmodmodule.c:2542:49: warning: assignment to ‘f2py_init_func’ {aka ‘void (*)(int *, long int *, void (*)(char *, long int *), int *)’} from incompatible pointer type ‘void (*)(int *, int *, void (*)(char *, int *), int *)’ [-Wincompatible-pointer-types]
+ 2542 |   f2py_pore_size_calculation_def[i_f2py++].func = rxi;
+      |                                                 ^
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmodmodule.c:2543:49: warning: assignment to ‘f2py_init_func’ {aka ‘void (*)(int *, long int *, void (*)(char *, long int *), int *)’} from incompatible pointer type ‘void (*)(int *, int *, void (*)(char *, int *), int *)’ [-Wincompatible-pointer-types]
+ 2543 |   f2py_pore_size_calculation_def[i_f2py++].func = ryi;
+      |                                                 ^
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmodmodule.c:2544:49: warning: assignment to ‘f2py_init_func’ {aka ‘void (*)(int *, long int *, void (*)(char *, long int *), int *)’} from incompatible pointer type ‘void (*)(int *, int *, void (*)(char *, int *), int *)’ [-Wincompatible-pointer-types]
+ 2544 |   f2py_pore_size_calculation_def[i_f2py++].func = rzi;
+      |                                                 ^
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmodmodule.c:2545:49: warning: assignment to ‘f2py_init_func’ {aka ‘void (*)(int *, long int *, void (*)(char *, long int *), int *)’} from incompatible pointer type ‘void (*)(int *, int *, void (*)(char *, int *), int *)’ [-Wincompatible-pointer-types]
+ 2545 |   f2py_pore_size_calculation_def[i_f2py++].func = box_length;
+      |                                                 ^
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmodmodule.c:2546:49: warning: assignment to ‘f2py_init_func’ {aka ‘void (*)(int *, long int *, void (*)(char *, long int *), int *)’} from incompatible pointer type ‘void (*)(int *, int *, void (*)(char *, int *), int *)’ [-Wincompatible-pointer-types]
+ 2546 |   f2py_pore_size_calculation_def[i_f2py++].func = radii;
+      |                                                 ^
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmodmodule.c:2550:49: warning: assignment to ‘f2py_init_func’ {aka ‘void (*)(int *, long int *, void (*)(char *, long int *), int *)’} from incompatible pointer type ‘void (*)(int *, int *, void (*)(char *, int *), int *)’ [-Wincompatible-pointer-types]
+ 2550 |   f2py_pore_size_calculation_def[i_f2py++].func = rpos;
+      |                                                 ^
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmodmodule.c:2555:49: warning: assignment to ‘f2py_init_func’ {aka ‘void (*)(int *, long int *, void (*)(char *, long int *), int *)’} from incompatible pointer type ‘void (*)(int *, int *, void (*)(char *, int *), int *)’ [-Wincompatible-pointer-types]
+ 2555 |   f2py_pore_size_calculation_def[i_f2py++].func = head;
+      |                                                 ^
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmodmodule.c:2556:49: warning: assignment to ‘f2py_init_func’ {aka ‘void (*)(int *, long int *, void (*)(char *, long int *), int *)’} from incompatible pointer type ‘void (*)(int *, int *, void (*)(char *, int *), int *)’ [-Wincompatible-pointer-types]
+ 2556 |   f2py_pore_size_calculation_def[i_f2py++].func = list;
+      |                                                 ^
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmodmodule.c:2557:49: warning: assignment to ‘f2py_init_func’ {aka ‘void (*)(int *, long int *, void (*)(char *, long int *), int *)’} from incompatible pointer type ‘void (*)(int *, int *, void (*)(char *, int *), int *)’ [-Wincompatible-pointer-types]
+ 2557 |   f2py_pore_size_calculation_def[i_f2py++].func = colloid_id;
+      |                                                 ^
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmod-f2pywrappers2.f90:317:10:
+
+  317 |       use pore_size_calculation, only : ncolloid
+      |          1
+Warning: Unused module variable ‘box_length’ which has been explicitly imported at (1) [-Wunused-variable]
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmod-f2pywrappers2.f90:317:10:
+
+  317 |       use pore_size_calculation, only : ncolloid
+      |          1
+Warning: Unused module variable ‘colloid_id’ which has been explicitly imported at (1) [-Wunused-variable]
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmod-f2pywrappers2.f90:317:10:
+
+  317 |       use pore_size_calculation, only : ncolloid
+      |          1
+Warning: Unused module variable ‘framechoice’ which has been explicitly imported at (1) [-Wunused-variable]
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmod-f2pywrappers2.f90:317:10:
+
+  317 |       use pore_size_calculation, only : ncolloid
+      |          1
+Warning: Unused module variable ‘head’ which has been explicitly imported at (1) [-Wunused-variable]
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmod-f2pywrappers2.f90:317:10:
+
+  317 |       use pore_size_calculation, only : ncolloid
+      |          1
+Warning: Unused module variable ‘list’ which has been explicitly imported at (1) [-Wunused-variable]
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmod-f2pywrappers2.f90:317:10:
+
+  317 |       use pore_size_calculation, only : ncolloid
+      |          1
+Warning: Unused module variable ‘radii’ which has been explicitly imported at (1) [-Wunused-variable]
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmod-f2pywrappers2.f90:317:10:
+
+  317 |       use pore_size_calculation, only : ncolloid
+      |          1
+Warning: Unused module variable ‘rpos’ which has been explicitly imported at (1) [-Wunused-variable]
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmod-f2pywrappers2.f90:317:10:
+
+  317 |       use pore_size_calculation, only : ncolloid
+      |          1
+Warning: Unused module variable ‘rxi’ which has been explicitly imported at (1) [-Wunused-variable]
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmod-f2pywrappers2.f90:317:10:
+
+  317 |       use pore_size_calculation, only : ncolloid
+      |          1
+Warning: Unused module variable ‘ryi’ which has been explicitly imported at (1) [-Wunused-variable]
+/tmp/tmpsmyqkvjp/src.linux-x86_64-3.10/fortranmod-f2pywrappers2.f90:317:10:
+
+  317 |       use pore_size_calculation, only : ncolloid
+      |          1
+Warning: Unused module variable ‘rzi’ which has been explicitly imported at (1) [-Wunused-variable]

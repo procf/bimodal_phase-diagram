@@ -1,0 +1,62 @@
+#!/bin/bash
+
+script_path='/projects/props/Rob/colloids/PAPERS/bimodal_phase-diagram/analysis-scripts/analysis-bi-colloids'
+
+size_ratios=('1-2')
+volume_fractions=('10' '15' '20' '25' '30')
+compositions=('25-75' '50-50' '75-25')
+D0=('03' '05' '07' '09' '12')
+kappa=('60') 
+depletion_scaling=('bysize') 
+
+# Redirect stdout and stderr to a file named with today's date
+# (but use tee so that the output is also displayed on the terminal)
+current_date=$(date +"%Y-%m-%d")
+output_file="abic_joblist_${current_date}.txt"
+exec > >(tee -a "$output_file") 2>&1
+
+curr_dir="$(pwd)"
+pwd
+
+for ((r=0; r<${#size_ratios[@]}; r++)); do
+  rArB="${size_ratios[$r]}"
+
+  for ((p=0; p<${#volume_fractions[@]}; p++)); do
+    phi_val="${volume_fractions[$p]}"
+
+    for ((c=0; c<${#compositions[@]}; c++)); do
+      comp_val="${compositions[$c]}"
+
+      for ((s=0; s<${#depletion_scaling[@]}; s++)); do
+        scaling="${depletion_scaling[$s]}"
+
+        for ((d=0; d<${#D0[@]}; d++)); do
+          D0_val="${D0[$d]}"
+
+          for ((a=0; a<${#kappa[@]}; a++)); do
+            kappa_val="${kappa[$a]}"
+
+            # r1-2/DPD/L70/poly0.0/seedNone/phi20/50-50/potential-morse-bysize/09kT/kappa60/
+	    gel_path="/projects/props/Rob/colloids/bimodal/r${rArB}/DPD/L70/poly0.0/seedNone/phi${phi_val}/${comp_val}/potential-morse-${scaling}/${D0_val}kT/kappa${kappa_val}"
+            echo $gel_path
+
+            #tag="r1r${rArB}_${composition}_phi${phi_tag}"
+            #echo $tag
+
+            #mkdir -p "$gel_path"
+
+            cp ${script_path}/analyze-bi-colloids $gel_path/
+            cp ${script_path}/exec_analysis-bi.py $gel_path/
+
+            cd $gel_path
+            sbatch analyze-bi-colloids $script_path 
+            cd $curr_dir
+
+            echo "---"
+
+	  done
+	done
+      done
+    done
+  done
+done

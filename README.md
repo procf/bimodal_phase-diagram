@@ -8,14 +8,23 @@ To confirm that a system is at equilibrium before gelation, use [analysis-eq](./
 ## What to expect
 For systems of ~10,000 colloidal particles the following scripts are available:
 
-- Coordination number distribution and average coordination number
-- Mean squared displacement (MSD)
+[analysis-mono-colloids](./analysis-scripts/analysis-mono-colloids) and [analysis-bi-colloids](./analysis-scripts/analysis-bi-colloids):
+- Coordination number distribution and average coordination number, average and decomposed by population
+- Mean squared displacement (MSD), average and decomposed by population
 - Void size distribution and average void size
 - Voronoi volume distribution
 - Network edgelist, the size of the largest connected component, and the physical network diameter ("span" as a proportion of total box size)
-- Gaussian Mixture Model (GMM) based mesoscale clustering
+- Cluster size distribution for components not in the LCC 
 
-Note: Standard analyses typically take less than 20min. GMM clustering can take ~9hrs. 
+[collate\*.py](./analysis-scripts):
+- Collate data for comparison and plotting
+
+[phase-classification\_and\_plot.ipynb](./analysis-scripts/phase-classification_and_plot.ipynb)
+- Calculate reduced second virial coefficient
+- Phase classification
+- Plotting
+
+Note: Full analyses typically take less than 20min
 
 In bimodal depletion gels, colloid-colloid interactions scale with particle size. Therefore, the attraction strength for S-S, S-L, and L-L contacts will be different.
 For size ratio 1:2 this scales roughly with the arithmetic mean, such that $D_0^{SL} = 1.5 D_0^{SS}$ and $D_0^{LL} = 2 D_0^{SS}$.

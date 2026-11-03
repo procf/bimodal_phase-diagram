@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#SBATCH -J anlyzbCOLL
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH -t 24:00:00
+##SBATCH -t 4-24:00:00
+#SBATCH -p long
+#SBATCH --mem=128Gb
+#SBATCH -o %A-anlyz.out
+#SBATCH -e %A-anlyz.err
+
+start=$SECONDS
+
+# Read the filename from the command-line argument
+SCRIPT_PATH="$1"
+
+# Ensure the filename is provided
+if [ -z "$SCRIPT_PATH" ]; then
+    echo "Error: No path provided for the analysis scripts."
+    exit 1
+fi
+
+
+module load miniconda3/24.11.1
+source /projects/props/Rob/software/hoomd4.2.1-mod/hoomdmod4.2.1-venv/bin/activate
+module load OpenMPI/4.1.6
+
+python exec_analysis-bi.py $SCRIPT_PATH
+
+time=$((SECONDS-start))
+echo The simulation ran for $((time / 86400))day"(s)" $(((time / 3600) % 24))hr"(s)" $(((time / 60) % 60))min $((time % 60))sec real "(wall clock)" time >&1
