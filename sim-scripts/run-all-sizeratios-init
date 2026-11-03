@@ -1,0 +1,66 @@
+#!/bin/bash
+
+script_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/templates"
+sim_path="/projects/colloids/bimodal/"
+
+L_values=( '70' )
+total_phi=( '0.10' '0.15' '0.20' '0.25' '0.30' )
+percent_large=( '0.0' '0.25' '0.5' '0.75' '1.0' )
+
+# Redirect stdout and stderr to a file named with today's date
+# (but use tee so that the output is also displayed on the terminal)
+current_date=$(date +"%Y-%m-%d")
+output_file="init_joblist_${current_date}.txt"
+exec > >(tee -a "$output_file") 2>&1
+
+curr_dir="$(pwd)"
+pwd
+
+
+for ((l=0; l<${#L_values[@]}; l++)); do
+  L_val="${L_values[$l]}"
+
+  for ((p=0; p<${#total_phi[@]}; p++)); do
+    phi_val="${total_phi[$p]}"
+    phi_tag=$(printf "%.0f" "$(echo "$phi_val * 100" | bc -l)")
+
+    for ((c=0; c<${#percent_large[@]}; c++)); do
+      comp_val="${percent_large[$c]}"
+      large=$(printf "%.0f" "$(echo "$comp_val * 100" | bc -l)")
+      small=$((100 - large))
+      composition="${small}-${large}"
+
+      # pick the template
+      if (( large == 0 )); then
+        template="${script_path}/100-0"
+      elif (( large == 100 )); then
+        template="${script_path}/0-100"
+      else
+        template="${script_path}/bimodal"
+      fi
+
+      # r1-2/DPD/L70/phi20/50-50/1-initialize
+      init_path="${sim_path}/r1-2/DPD/L${L_val}/phi${phi_tag}/${composition}/1-initialize"
+      echo $init_path
+
+      mkdir -p "$init_path"
+
+      cp "${template}/1-initialize/sim-init.py" "$init_path/"
+      cp "${template}/1-initialize/job-init" "$init_path/job-init"
+
+      sed -i "s/PHI_VAL/${phi_val}/g" "$init_path/sim-init.py"
+      sed -i "s/L_VAL/${L_val}/g" "$init_path/sim-init.py"
+      if [[ "$template" == *bimodal ]]; then
+        percent_C1=$(echo "1 - $comp_val" | bc -l)
+        sed -i "s/PERCENT_C1_VAL/${percent_C1}/g" "$init_path/sim-init.py"
+        sed -i "s/PERCENT_C2_VAL/${comp_val}/g" "$init_path/sim-init.py"
+      fi
+
+      cd "$init_path"
+      sbatch job-init
+      cd "$curr_dir"
+      echo "---"
+
+    done
+  done
+done
